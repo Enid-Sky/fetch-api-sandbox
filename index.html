@@ -12,6 +12,13 @@
     <script>
         document.getElementById('getText').addEventListener('click', getText);
 
+        function handleErrors(res) {
+            if(!res.ok) {
+                throw Error(res.statusText);
+            }
+            return res;
+        }
+
         function getText() {
 
             // ****ES5 version****
@@ -31,7 +38,8 @@
 
             // ****ES6 version****
 
-            fetch('sample.txt')
+            fetch('sample.tx')
+            .then(handleErrors)
             .then((res) => res.text())
             .then((data) => {
                 // Get data that was fetched and use the DOM to put into the browser
