@@ -7,15 +7,37 @@
 </head>
 <body>
     <button id="getText">Get Text</button>
+    <div id="output"></div>
 
     <script>
         document.getElementById('getText').addEventListener('click', getText);
 
         function getText() {
+
+            // ****ES5 version****
+
+            // fetch('sample.txt')
+            // .then(function(res) {
+            //     // Display the text and the status to the console
+            //     // console.log(res.text());
+            //     return res.text();
+            // })
+            // .then(function(data) {
+            //     console.log(data);
+            // })
+            // .catch(function(err){
+            //     console.log(err)
+            // })
+
+            // ****ES6 version****
+
             fetch('sample.txt')
-            .then(function(res) {
-                console.log(res);
+            .then((res) => res.text())
+            .then((data) => {
+                // Get data that was fetched and use the DOM to put into the browser
+                document.getElementById('output').innerHTML = data
             })
+            .catch((err) => console.log(err))
         }
     </script>
     
